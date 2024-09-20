@@ -1,11 +1,17 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import generics
 from .models import *
 from .serializers import *
 
-class UsersViewSet(viewsets.ModelViewSet):
+class UsersIndex(generics.ListCreateAPIView):
     queryset = People.objects.all()
     serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = People.objects.all()
+    serializer_class = UserSerializer
+
 
 
 
